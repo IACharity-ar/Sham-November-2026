@@ -783,9 +783,10 @@ const welcomeQuotes = [
         id: 'معرّف المستفيد (ID)',
         deliveryIntro: 'امسح رمز QR أو أدخل معرّف المستفيد، ثم راجع بياناته قبل تأكيد التسليم.',
         lookup: 'عرض المستفيد', scan: 'مسح QR', stopScan: 'إيقاف الكاميرا',
-        searchIntro: 'ابحث بالمعرّف أو الاسم أو اسم الزوج/الزوجة أو الهاتف أو العنوان.',
+        searchIntro: 'ابحث بالمعرّف أو باسم المستفيد أو أحد أفراد أسرته أو بالهاتف أو العنوان.',
         query: 'عبارة البحث', previous: 'السابق', next: 'التالي', refresh: 'تحديث',
         name: 'الاسم', partner: 'الزوج / الزوجة', phone: 'الهاتف', members: 'عدد الأفراد', address: 'العنوان',
+        father: 'اسم الأب', mother: 'اسم الأم',
         status: 'حالة التسليم', delivered: 'تم التسليم', pending: 'لم يتم التسليم',
         unknown: 'حالة بحاجة للمراجعة', total: 'إجمالي السجلات', rate: 'نسبة التسليم',
         confirm: 'تأكيد التسليم', loading: 'جارٍ التحميل…', startingCamera: 'جارٍ تشغيل الكاميرا…',
@@ -814,9 +815,10 @@ const welcomeQuotes = [
         id: 'Beneficiary ID',
         deliveryIntro: 'Scan a QR code or enter an ID, then review the record before confirming delivery.',
         lookup: 'Look up', scan: 'Scan QR', stopScan: 'Stop camera',
-        searchIntro: 'Search by ID, name, partner name, phone or address.',
+        searchIntro: 'Search by ID, beneficiary or family member name, phone or address.',
         query: 'Search term', previous: 'Previous', next: 'Next', refresh: 'Refresh',
         name: 'Name', partner: 'Partner name', phone: 'Phone', members: 'Household members', address: 'Address',
+        father: 'Father’s name', mother: 'Mother’s name',
         status: 'Delivery status', delivered: 'Delivered', pending: 'Pending',
         unknown: 'Status needs review', total: 'Total records', rate: 'Delivery rate',
         confirm: 'Confirm delivery', loading: 'Loading…', startingCamera: 'Starting camera…',
@@ -975,7 +977,8 @@ const welcomeQuotes = [
       status.dataset.status = person.status;
       header.append(heading, status);
       const details = element('dl', null, 'details');
-      for (const field of ['id', 'partner', 'phone', 'members', 'address']) {
+      const familyFields = Object.hasOwn(person, 'father') ? ['father', 'mother'] : ['partner'];
+      for (const field of ['id', ...familyFields, 'phone', 'members', 'address']) {
         const group = element('div');
         const value = element('dd');
         const text = element('bdi', person[field] || '—');
