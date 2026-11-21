@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#003b21">
+  <meta name="referrer" content="no-referrer">
+  <title>IAC | November Sham 2026</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap">
+  <style>
+:root{
+  --green:#006838;
+  --green2:#009654;
+  --dark:#003b21;
+  --deep:#002515;
+  --bg:#f4f7f5;
+  --white:#fff;
+  --text:#17251e;
+  --muted:#718078;
+  --border:#e0e9e4;
+  --soft:#eaf7f0;
+  --success:#078447;
+  --successSoft:#e9f8f0;
+  --warning:#a16b10;
+  --warningSoft:#fff7e5;
+  --danger:#d83f3f;
+  --dangerSoft:#fff0f0;
+  --gold:#d89c26;
+  --shadow:0 16px 40px rgba(0,65,35,.09);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:"Cairo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+html[lang="en"] body{
+  font-family:"Inter","Cairo",sans-serif;
+}
+
+button,
+input,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+
+/* ==================================================
+   SPLASH
+================================================== */
+.splash{
+  position:fixed;
+  z-index:50000;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #087646,
+      #003b21 58%,
+      #002515
+    );
+
+  transition:
+    opacity .7s ease,
+    visibility .7s ease;
+}
+
+.splash.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.splash-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.logo-animation{
+  position:relative;
+  width:150px;
+  height:150px;
+  margin-bottom:25px;
+}
+
+.logo-half{
+  position:absolute;
+  top:0;
+  width:75px;
+  height:150px;
+  overflow:hidden;
+  opacity:0;
+  filter:drop-shadow(0 15px 30px rgba(0,0,0,.25));
+}
+
+.logo-half img{
+  position:absolute;
+  top:0;
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.logo-left{
+  left:0;
+  transform:translateX(-80px);
+  animation:logoLeft .9s .15s forwards cubic-bezier(.2,.8,.2,1);
+}
+
+.logo-left img{
+  left:0;
+}
+
+.logo-right{
+  right:0;
+  transform:translateX(80px);
+  animation:logoRight .9s .15s forwards cubic-bezier(.2,.8,.2,1);
+}
+
+.logo-right img{
+  right:0;
+}
+
+@keyframes logoLeft{
+  to{
+    transform:translateX(0);
+    opacity:1;
+  }
+}
+
+@keyframes logoRight{
+  to{
+    transform:translateX(0);
+    opacity:1;
+  }
+}
+
+.logo-ring{
+  position:absolute;
+  inset:-10px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  opacity:0;
+  animation:ringShow .8s .85s forwards;
+}
+
+.logo-ring::after{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:50%;
+}
+
+@keyframes ringShow{
+  from{
+    opacity:0;
+    transform:scale(.75);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+.splash-title{
+  color:white;
+  font-size:21px;
+  font-weight:800;
+  opacity:0;
+  transform:translateY(15px);
+  animation:splashText .6s .9s forwards;
+}
+
+.splash-campaign{
+  margin-top:6px;
+  color:rgba(255,255,255,.66);
+  font-size:11px;
+  letter-spacing:1px;
+  opacity:0;
+  animation:splashText .6s 1.15s forwards;
+}
+
+.splash-line{
+  width:0;
+  height:2px;
+  margin-top:17px;
+  border-radius:10px;
+  background:rgba(255,255,255,.8);
+  animation:splashLine .7s 1.25s forwards;
+}
+
+@keyframes splashText{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes splashLine{
+  to{
+    width:100px;
+  }
+}
+
+
+/* ==================================================
+   WELCOME SCREEN
+================================================== */
+
+.welcome-screen{
+  position:fixed;
+  z-index:40000;
+  inset:0;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
+  overflow:auto;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(0,150,84,.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(0,104,56,.15),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #f7fcf9,
+      #eaf7f0
+    );
+
+  opacity:0;
+  transition:opacity .6s ease;
+}
+
+.welcome-screen.show{
+  display:flex;
+  opacity:1;
+}
+
+.welcome-screen.leave{
+  opacity:0;
+  pointer-events:none;
+}
+
+.welcome-decoration{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.welcome-decoration.one{
+  width:250px;
+  height:250px;
+  top:-100px;
+  right:-70px;
+  border:40px solid rgba(0,104,56,.04);
+}
+
+.welcome-decoration.two{
+  width:200px;
+  height:200px;
+  bottom:-80px;
+  left:-50px;
+  border:30px solid rgba(0,150,84,.05);
+}
+
+.welcome-card{
+  position:relative;
+  z-index:2;
+
+  width:min(600px,100%);
+
+  padding:42px 35px 32px;
+
+  border:1px solid rgba(0,104,56,.10);
+  border-radius:30px;
+
+  background:rgba(255,255,255,.88);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,70,38,.12);
+
+  text-align:center;
+
+  animation:welcomeUp .8s ease;
+}
+
+@keyframes welcomeUp{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.97);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.welcome-logo-wrap{
+  position:relative;
+
+  width:115px;
+  height:115px;
+
+  margin:0 auto 22px;
+}
+
+.welcome-logo-glow{
+  position:absolute;
+  inset:-15px;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,150,84,.10);
+
+  animation:
+    welcomePulse
+    2.4s ease-in-out infinite;
+}
+
+@keyframes welcomePulse{
+  50%{
+    transform:scale(1.08);
+    opacity:.5;
+  }
+}
+
+.welcome-logo{
+  position:relative;
+  z-index:2;
+
+  width:115px;
+  height:115px;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  border:4px solid white;
+
+  box-shadow:
+    0 15px 35px
+    rgba(0,80,44,.18);
+}
+
+.welcome-mini{
+  color:var(--green);
+
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:1.4px;
+}
+
+.welcome-title{
+  margin-top:8px;
+
+  font-size:23px;
+  font-weight:800;
+}
+
+.welcome-divider{
+  width:50px;
+  height:3px;
+
+  margin:16px auto;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--green2)
+    );
+}
+
+.welcome-quote-ar{
+  min-height:38px;
+
+  font-size:16px;
+  font-weight:800;
+  line-height:1.9;
+
+  color:var(--dark);
+}
+
+.welcome-quote-en{
+  min-height:34px;
+
+  margin-top:8px;
+
+  direction:ltr;
+
+  color:var(--muted);
+
+  font-family:"Inter",sans-serif;
+
+  font-size:12px;
+  line-height:1.7;
+}
+
+.welcome-button{
+  width:100%;
+
+  margin-top:25px;
+
+  padding:15px 20px;
+
+  border:0;
+  border-radius:15px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--dark),
+      var(--green2)
+    );
+
+  font-size:12px;
+  font-weight:800;
+
+  box-shadow:
+    0 10px 25px
+    rgba(0,104,56,.18);
+}
+
+.welcome-countdown{
+  margin-top:13px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .app-header { background: var(--dark); color: white; border-bottom: 3px solid var(--gold); }
+    .frame { width: min(100% - 2rem, 960px); margin-inline: auto; }
+    .header-inner { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: .85rem; }
+    .brand { display: flex; align-items: center; gap: .8rem; min-width: 0; }
+    .brand img { width: 46px; height: 46px; border-radius: 50%; background: white; }
+    .brand strong, .brand small { display: block; }
+    .brand small { color: #cce7d9; }
+    .header-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: .45rem; }
+    .header-actions button { color: white; background: transparent; border: 1px solid #ffffff52; border-radius: 10px; padding: .35rem .6rem; }
+    .navigation { display: grid; grid-template-columns: repeat(3, 1fr); gap: .35rem; padding: .35rem; margin-block: 1.35rem; background: #e5eee9; border-radius: 15px; }
+    .navigation button { padding: .62rem .35rem; border: 0; border-radius: 11px; font-weight: 800; color: var(--dark); background: transparent; }
+    .navigation button[aria-current="page"] { background: var(--green); color: white; box-shadow: 0 4px 12px #003b2124; }
+    main { padding-bottom: 2.5rem; }
+    .panel, .person { background: white; border: 1px solid var(--border); border-radius: 18px; padding: clamp(1rem, 4vw, 1.65rem); box-shadow: var(--shadow); }
+    h1, h2, p { margin: 0; }
+    h1 { font-size: clamp(1.45rem, 4vw, 1.9rem); line-height: 1.4; letter-spacing: -.02em; }
+    h2 { font-size: 1.15rem; line-height: 1.5; }
+    .description { margin-block: .35rem 1.1rem; color: #4f6559; }
+    .controls { display: flex; flex-wrap: wrap; align-items: end; gap: .65rem; }
+    .field { flex: 1 1 13rem; min-width: 0; }
+    label { display: block; margin-bottom: .25rem; font-weight: 700; }
+    input { width: 100%; min-height: 46px; padding: .52rem .75rem; border: 1px solid #a3b9ac; border-radius: 10px; background: white; color: var(--text); font-size: 1rem; }
+    .button { min-height: 46px; padding: .55rem 1rem; border: 1px solid transparent; border-radius: 10px; background: var(--green); color: white; font-size: .95rem; font-weight: 800; }
+    .button:hover { background: var(--dark); }
+    .button.secondary { background: var(--soft); color: var(--dark); border-color: #c8e1d3; }
+    .button.secondary:hover { background: #d9efe3; }
+    button:disabled { opacity: .55; cursor: default; }
+    .camera-box { margin-top: 1rem; padding: .75rem; background: var(--soft); border-radius: 14px; }
+    #reader { width: min(100%, 480px); margin: 0 auto .65rem; overflow: hidden; border-radius: 10px; }
+    #reader video { display: block; }
+    .notice:not(:empty) { margin-top: .85rem; padding: .65rem .85rem; border-radius: 10px; background: var(--soft); color: var(--dark); }
+    .notice[data-kind="error"]:not(:empty) { color: #8b2323; background: var(--dangerSoft); }
+    .results { display: grid; gap: .8rem; margin-top: .9rem; }
+    .results:empty { margin: 0; }
+    .person { box-shadow: 0 7px 18px #003b210b; }
+    .person-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: .6rem; border-bottom: 1px solid var(--border); padding-bottom: .75rem; }
+    .pill { font-size: .83rem; font-weight: 800; padding: .2rem .62rem; border-radius: 999px; background: var(--warningSoft); color: #754b08; }
+    .pill[data-status="delivered"] { background: var(--successSoft); color: var(--green); }
+    .pill[data-status="unknown"] { background: var(--dangerSoft); color: #8b2323; }
+    .details { margin: .9rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .8rem; }
+    dt { color: #50665a; font-size: .82rem; font-weight: 700; }
+    dd { margin: .1rem 0 0; font-weight: 700; overflow-wrap: anywhere; }
+    .delivery-button { margin-top: .9rem; }
+    .pagination { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-top: 1rem; text-align: center; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: .65rem; margin-top: 1rem; }
+    .metric { padding: .85rem; border: 1px solid var(--border); border-radius: 12px; background: #f6faf8; }
+    .metric strong { display: block; font-size: 1.7rem; color: var(--dark); }
+    .progress-label { display: flex; justify-content: space-between; margin-top: 1rem; gap: .6rem; font-weight: 800; }
+    progress { width: 100%; height: .7rem; accent-color: var(--green); }
+    dialog { width: min(100% - 2rem, 430px); border: 1px solid var(--border); border-radius: 18px; padding: 1.4rem; box-shadow: var(--shadow); color: var(--text); }
+    dialog::backdrop { background: #0025159c; }
+    dialog .button { margin-top: .7rem; }
+    @media (max-width: 520px) {
+      .frame { width: calc(100% - 1.25rem); }
+      .brand strong { font-size: .85rem; }
+      .brand small { font-size: .72rem; }
+      .welcome-card { width: 100%; }
+      .welcome-title { font-size: 20px; }
+      .welcome-quote-ar { font-size: 14px; }
+      .controls .field, .controls .button { flex: 1 0 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+    }
+  </style>
+  <script defer src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+<div id="splash" class="splash">
+
+  <div class="splash-content">
+
+    <div class="logo-animation">
+
+      <div class="logo-ring"></div>
+
+      <div class="logo-half logo-left">
+        <img
+          src="https://i.postimg.cc/BvLv7FDL/images.jpg"
+          alt="IAC"
+        >
+      </div>
+
+      <div class="logo-half logo-right">
+        <img
+          src="https://i.postimg.cc/BvLv7FDL/images.jpg"
+          alt="IAC"
+        >
+      </div>
+
+    </div>
+
+    <div class="splash-title">
+      مؤسسة الإغاثة الدولية
+    </div>
+
+    <div class="splash-campaign">
+      November Sham 2026
+    </div>
+
+    <div class="splash-line"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ==================================================
+     WELCOME
+================================================== -->
+
+<div id="welcomeScreen" class="welcome-screen">
+
+  <div class="welcome-decoration one"></div>
+  <div class="welcome-decoration two"></div>
+
+  <div class="welcome-card">
+
+    <div class="welcome-logo-wrap">
+
+      <div class="welcome-logo-glow"></div>
+
+      <img
+        class="welcome-logo"
+        src="https://i.postimg.cc/BvLv7FDL/images.jpg"
+        alt="IAC"
+      >
+
+    </div>
+
+    <div class="welcome-mini">
+      INTERNATIONAL AID CAMPAIGN
+    </div>
+
+    <div class="welcome-title">
+      مؤسسة الإغاثة الدولية
+    </div>
+
+    <div class="welcome-divider"></div>
+
+    <div
+      id="welcomeQuoteAr"
+      class="welcome-quote-ar"
+    ></div>
+
+    <div
+      id="welcomeQuoteEn"
+      class="welcome-quote-en"
+    ></div>
+
+    <button
+      id="welcomeButton"
+      class="welcome-button"
+      onclick="enterSystem()"
+    >
+      الدخول إلى النظام
+    </button>
+
+    <div
+      id="welcomeCountdown"
+      class="welcome-countdown"
+    ></div>
+
+  </div>
+
+</div>
+  <div id="app" hidden>
+    <header class="app-header">
+      <div class="frame header-inner">
+        <div class="brand">
+          <img src="https://i.postimg.cc/BvLv7FDL/images.jpg" width="46" height="46" alt="IAC">
+          <div><strong data-text="organization"></strong><small dir="ltr">November Sham 2026</small></div>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="language" lang="en">English</button>
+          <button type="button" id="lock" data-text="lock"></button>
+        </div>
+      </div>
+    </header>
+    <main class="frame">
+      <nav class="navigation" aria-label="أقسام النظام">
+        <button type="button" data-view="delivery" data-text="delivery" aria-current="page" aria-controls="delivery"></button>
+        <button type="button" data-view="search" data-text="search" aria-controls="search"></button>
+        <button type="button" data-view="stats" data-text="stats" aria-controls="stats"></button>
+      </nav>
+      <section class="panel" id="delivery" aria-labelledby="delivery-title">
+        <h1 id="delivery-title" data-text="delivery"></h1>
+        <p class="description" data-text="deliveryIntro"></p>
+        <form id="lookup-form" class="controls">
+          <div class="field">
+            <label for="manual-id" data-text="id"></label>
+            <input id="manual-id" dir="ltr" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="NOV0001 / SHAM-N001" maxlength="40" required>
+          </div>
+          <button class="button" type="submit" id="lookup-button" data-text="lookup"></button>
+          <button class="button secondary" type="button" id="scan-button" data-text="scan"></button>
+        </form>
+        <div id="camera-box" class="camera-box" hidden>
+          <div id="reader"></div>
+          <button class="button secondary" type="button" id="stop-scan" data-text="stopScan"></button>
+        </div>
+        <p id="delivery-notice" class="notice" role="status"></p>
+        <div id="delivery-result" class="results"></div>
+      </section>
+      <section class="panel" id="search" aria-labelledby="search-title" hidden>
+        <h1 id="search-title" data-text="search"></h1>
+        <p class="description" data-text="searchIntro"></p>
+        <form id="search-form" class="controls">
+          <div class="field">
+            <label for="search-query" data-text="query"></label>
+            <input id="search-query" type="search" dir="auto" minlength="2" maxlength="120" autocomplete="off" required>
+          </div>
+          <button class="button" type="submit" id="search-button" data-text="search"></button>
+        </form>
+        <p id="search-notice" class="notice" role="status"></p>
+        <div id="search-results" class="results"></div>
+        <div id="pagination" class="pagination" hidden>
+          <button class="button secondary" type="button" id="prev-page" data-text="previous"></button>
+          <span id="page-number"></span>
+          <button class="button secondary" type="button" id="next-page" data-text="next"></button>
+        </div>
+      </section>
+      <section class="panel" id="stats" aria-labelledby="stats-title" hidden>
+        <div class="controls">
+          <h1 class="field" id="stats-title" data-text="stats"></h1>
+          <button class="button secondary" type="button" id="refresh" data-text="refresh"></button>
+        </div>
+        <p id="stats-notice" class="notice" role="status"></p>
+        <div id="stats-content" hidden>
+          <div id="stats-grid" class="stat-grid"></div>
+          <label for="delivery-progress" class="progress-label"><span data-text="rate"></span><span id="stats-percent"></span></label>
+          <progress id="delivery-progress" max="100" value="0"></progress>
+        </div>
+      </section>
+    </main>
+  </div>
+  <dialog id="access" aria-labelledby="access-title">
+    <h1 id="access-title" data-text="access"></h1>
+    <p class="description" data-text="accessIntro"></p>
+    <form id="key-form">
+      <label for="access-key" data-text="key"></label>
+      <input id="access-key" dir="ltr" type="password" maxlength="256" autocomplete="off" required>
+      <p id="access-notice" class="notice" role="status"></p>
+      <button class="button" type="submit" id="unlock" data-text="unlock"></button>
+    </form>
+  </dialog>
+  <script>
+    // Replace this value with the new Apps Script web app /exec URL.
+    const API_URL = 'https://script.google.com/macros/s/AKfycbw3L0Bccc-q-0VgAPbjFeoiDElrAq24Y0cCykxW_NHeRtfV-Z1djjptij3OteItpdKyug/exec';
+
+const welcomeQuotes = [
+
+  {
+    ar:'كل يدٍ تمتد بالعطاء تصنع أملاً جديداً.',
+    en:'Every helping hand creates a new beginning of hope.'
+  },
+
+  {
+    ar:'حين نعمل معاً، يصبح الأمل أقرب إلى كل أسرة.',
+    en:'When we work together, hope comes closer to every family.'
+  },
+
+  {
+    ar:'العطاء ليس مجرد مساعدة، بل رسالة تقول: نحن معكم.',
+    en:'Giving is more than assistance; it is a message that says: we are with you.'
+  },
+
+  {
+    ar:'خطوة صغيرة من الخير قد تصنع فرقاً كبيراً في حياة إنسان.',
+    en:'A small act of kindness can make a remarkable difference in someone’s life.'
+  },
+
+  {
+    ar:'مع كل ابتسامة نصنعها، نزرع بذرة أمل للمستقبل.',
+    en:'With every smile we create, we plant a seed of hope for the future.'
+  },
+
+  {
+    ar:'الأمل يكبر عندما نتشاركه، والخير يزداد عندما نقدمه.',
+    en:'Hope grows when shared, and kindness grows when given.'
+  },
+
+  {
+    ar:'معاً نحول التضامن إلى أثر، والأمل إلى واقع.',
+    en:'Together, we turn solidarity into impact and hope into reality.'
+  },
+
+  {
+    ar:'وراء كل عملية توزيع قصة إنسان تستحق الاهتمام والكرامة.',
+    en:'Behind every distribution is a human story worthy of care and dignity.'
+  },
+
+  {
+    ar:'نؤمن أن المستقبل الأفضل يبدأ بخطوة إنسانية اليوم.',
+    en:'We believe a better tomorrow begins with a compassionate step today.'
+  },
+
+  {
+    ar:'حين يجتمع التنظيم مع الرحمة، يصل الخير إلى المكان الصحيح.',
+    en:'When organization meets compassion, support reaches where it matters most.'
+  },
+
+  {
+    ar:'نصنع اليوم أثراً يبقى، وأملاً يستمر.',
+    en:'Today we create an impact that lasts and hope that continues.'
+  },
+
+  {
+    ar:'كل إنسان يستحق أن يرى في الغد فرصة جديدة.',
+    en:'Everyone deserves to see tomorrow as a new opportunity.'
+  }
+];
+
+    const labels = {
+      ar: {
+        organization: 'مؤسسة الإغاثة الدولية', navigation: 'أقسام النظام',
+        delivery: 'التسليم', search: 'البحث', stats: 'الإحصائيات',
+        lock: 'قفل', access: 'دخول فريق التوزيع', accessIntro: 'أدخل مفتاح الفريق للوصول إلى بيانات التوزيع.',
+        key: 'مفتاح الفريق', unlock: 'متابعة', id: 'معرّف المستفيد (ID)',
+        deliveryIntro: 'امسح رمز QR أو أدخل معرّف المستفيد، ثم راجع بياناته قبل تأكيد التسليم.',
+        lookup: 'عرض المستفيد', scan: 'مسح QR', stopScan: 'إيقاف الكاميرا',
+        searchIntro: 'ابحث بالمعرّف أو الاسم أو اسم الزوج/الزوجة أو الهاتف أو العنوان.',
+        query: 'عبارة البحث', previous: 'السابق', next: 'التالي', refresh: 'تحديث',
+        name: 'الاسم', partner: 'الزوج / الزوجة', phone: 'الهاتف', members: 'عدد الأفراد', address: 'العنوان',
+        status: 'حالة التسليم', delivered: 'تم التسليم', pending: 'لم يتم التسليم',
+        unknown: 'حالة بحاجة للمراجعة', total: 'إجمالي السجلات', rate: 'نسبة التسليم',
+        confirm: 'تأكيد التسليم', loading: 'جارٍ التحميل…', startingCamera: 'جارٍ تشغيل الكاميرا…',
+        scanHint: 'وجّه الكاميرا نحو رمز QR.', cameraError: 'تعذر تشغيل الكاميرا. تحقق من الإذن أو أدخل المعرّف يدويًا.',
+        cameraContext: 'الكاميرا تتطلب فتح الموقع عبر HTTPS. يمكنك إدخال المعرّف يدويًا.',
+        cameraLibrary: 'تعذر تحميل قارئ QR. يمكنك إدخال المعرّف يدويًا.',
+        invalid_qr: 'لم أجد معرّفًا واحدًا صالحًا في رمز QR. أعد المسح أو أدخل المعرّف يدويًا.',
+        invalid_id: 'أدخل معرّفًا بصيغة NOV0001 أو SHAM-N001.',
+        not_found: 'لم يُعثر على مستفيد بهذا المعرّف.',
+        duplicate_id: 'هذا المعرّف مكرر في الشيت. راجع السجلات قبل التسليم.',
+        unknown_status: 'راجع قيمة Delivered في الشيت قبل تسجيل التسليم.',
+        invalid_query: 'أدخل حرفين على الأقل للبحث.',
+        unauthorized: 'مفتاح الفريق غير صحيح. تحقق منه وحاول مجددًا.',
+        configuration: 'اضبط SPREADSHEET_ID وACCESS_KEY في خصائص سكريبت Apps Script.',
+        endpoint: 'ضع رابط نشر Apps Script المنتهي بـ /exec في API_URL داخل index.html.',
+        schema: 'تحقق من معرّف التبويب وعناوين الأعمدة في الصف الأول.',
+        busy: 'التسليم مشغول الآن. حاول مجددًا.',
+        server: 'تعذر تنفيذ الطلب. تحقق من سجل Apps Script.',
+        network: 'تعذر الاتصال بخدمة التوزيع. تحقق من الرابط وإعدادات النشر ثم حاول مجددًا.',
+        noResults: 'لا توجد نتائج مطابقة.', count: 'عدد النتائج', saved: 'تم تسجيل التسليم.',
+        already: 'هذا المستفيد مُسلَّم مسبقًا.', welcomeButton: 'الدخول إلى النظام',
+        autoEnter: seconds => 'الدخول تلقائيًا بعد ' + seconds + ' ثانية'
+      },
+      en: {
+        organization: 'International Aid Campaign', navigation: 'Sections',
+        delivery: 'Delivery', search: 'Search', stats: 'Statistics', lock: 'Lock',
+        access: 'Distribution team access', accessIntro: 'Enter the team key to access distribution records.',
+        key: 'Team key', unlock: 'Continue', id: 'Beneficiary ID',
+        deliveryIntro: 'Scan a QR code or enter an ID, then review the record before confirming delivery.',
+        lookup: 'Look up', scan: 'Scan QR', stopScan: 'Stop camera',
+        searchIntro: 'Search by ID, name, partner name, phone or address.',
+        query: 'Search term', previous: 'Previous', next: 'Next', refresh: 'Refresh',
+        name: 'Name', partner: 'Partner name', phone: 'Phone', members: 'Household members', address: 'Address',
+        status: 'Delivery status', delivered: 'Delivered', pending: 'Pending',
+        unknown: 'Status needs review', total: 'Total records', rate: 'Delivery rate',
+        confirm: 'Confirm delivery', loading: 'Loading…', startingCamera: 'Starting camera…',
+        scanHint: 'Point the camera at the QR code.',
+        cameraError: 'Could not start the camera. Check permission or enter the ID manually.',
+        cameraContext: 'The camera requires HTTPS. You can enter the ID manually.',
+        cameraLibrary: 'Could not load the QR reader. You can enter the ID manually.',
+        invalid_qr: 'The QR code did not contain a single valid ID. Scan again or enter the ID manually.',
+        invalid_id: 'Enter an ID in the format NOV0001 or SHAM-N001.',
+        not_found: 'No beneficiary was found for this ID.',
+        duplicate_id: 'This ID is duplicated in the sheet. Review the records before delivery.',
+        unknown_status: 'Review the Delivered cell in the sheet before recording delivery.',
+        invalid_query: 'Enter at least two characters to search.',
+        unauthorized: 'Check the team key and try again.',
+        configuration: 'Set SPREADSHEET_ID and ACCESS_KEY in Apps Script properties.',
+        endpoint: 'Set API_URL in index.html to the deployed Apps Script /exec URL.',
+        schema: 'Check the tab ID and first-row column headers.',
+        busy: 'Delivery is busy. Please retry.',
+        server: 'The request failed. Check the Apps Script execution log.',
+        network: 'Could not reach the distribution service. Check the URL and deployment settings and retry.',
+        noResults: 'No matching records.', count: 'Results', saved: 'Delivery recorded.',
+        already: 'Delivery was already recorded for this beneficiary.', welcomeButton: 'Enter the system',
+        autoEnter: seconds => 'Entering automatically in ' + seconds + ' seconds'
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+    const views = ['delivery', 'search', 'stats'];
+    const idPattern = /^(?:NOV\d{4,}|SHAM-N\d{3,})$/;
+    let language = 'ar';
+    let key = '';
+    let session = 0;
+    let activeView = 'delivery';
+    let currentPerson = null;
+    let searchState = null;
+    let query = '';
+    let currentStats = null;
+    let deliveryBusy = false;
+    let searchBusy = false;
+    let statsBusy = false;
+    let camera = null;
+    let welcomeTimer;
+
+    function t(code) {
+      return labels[language][code] || labels[language].server;
+    }
+
+    function element(tag, text, className) {
+      const node = document.createElement(tag);
+      if (text != null) node.textContent = text;
+      if (className) node.className = className;
+      return node;
+    }
+
+    function notice(id, code = '', kind = '', value = '') {
+      const node = $(id + '-notice');
+      node.dataset.code = code;
+      node.dataset.kind = kind;
+      node.dataset.value = value;
+      node.textContent = code ? t(code) + (value === '' ? '' : ' · ' + value) : '';
+    }
+
+    function applyLanguage() {
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-text]').forEach(node => {
+        node.textContent = t(node.dataset.text);
+      });
+      document.querySelector('.navigation').setAttribute('aria-label', t('navigation'));
+      $('language').textContent = language === 'ar' ? 'English' : 'العربية';
+      $('language').lang = language === 'ar' ? 'en' : 'ar';
+      document.querySelectorAll('.notice').forEach(node => {
+        notice(node.id.replace('-notice', ''), node.dataset.code, node.dataset.kind, node.dataset.value);
+      });
+      renderDelivery();
+      renderSearch();
+      renderStats();
+    }
+
+    function startWelcome() {
+      const quote = welcomeQuotes[Math.floor(Math.random() * welcomeQuotes.length)];
+      $('welcomeQuoteAr').textContent = quote.ar;
+      $('welcomeQuoteEn').textContent = quote.en;
+      setTimeout(() => {
+        $('welcomeScreen').classList.add('show');
+        $('splash').classList.add('hide');
+        let seconds = 15;
+        $('welcomeCountdown').textContent = t('autoEnter')(seconds);
+        welcomeTimer = setInterval(() => {
+          seconds--;
+          $('welcomeCountdown').textContent = t('autoEnter')(seconds);
+          if (!seconds) enterSystem();
+        }, 1000);
+      }, 2100);
+    }
+
+    function enterSystem() {
+      clearInterval(welcomeTimer);
+      $('welcomeScreen').classList.add('leave');
+      setTimeout(() => {
+        $('welcomeScreen').hidden = true;
+        $('app').hidden = false;
+        $('access').showModal();
+      }, 600);
+    }
+
+    function lockApp(code = '') {
+      session++;
+      key = '';
+      stopCamera();
+      currentPerson = searchState = currentStats = null;
+      deliveryBusy = searchBusy = statsBusy = false;
+      $('manual-id').value = $('search-query').value = query = '';
+      views.forEach(view => notice(view));
+      renderDelivery();
+      renderSearch();
+      renderStats();
+      $('access-key').value = '';
+      notice('access', code, 'error');
+      if (!$('access').open) $('access').showModal();
+    }
+
+    async function api(action, params = {}, requestKey = key) {
+      if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(API_URL)) {
+        throw new Error('endpoint');
+      }
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 25000);
+      let payload;
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'text/plain;charset=UTF-8'},
+          body: JSON.stringify({...params, action, key: requestKey}),
+          credentials: 'omit',
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        payload = await response.json();
+      } catch (error) {
+        throw new Error('network');
+      } finally {
+        clearTimeout(timeout);
+      }
+      if (!payload || payload.success !== true) {
+        throw new Error(payload && payload.code || 'server');
+      }
+      return payload;
+    }
+
+    function handleError(view, error) {
+      if (error.message === 'unauthorized') lockApp('unauthorized');
+      else notice(view, error.message, 'error');
+    }
+
+    function normalizeId(value) {
+      return String(value ?? '')
+        .replace(/[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g, '')
+        .trim().toUpperCase();
+    }
+
+    function idFromQr(value) {
+      const raw = normalizeId(value);
+      if (idPattern.test(raw)) return raw;
+      if (!raw || raw.length > 4096) return '';
+      let decoded = raw;
+      try { decoded = decodeURIComponent(raw).toUpperCase(); } catch (error) { /* Use original text. */ }
+      const candidates = new Set();
+      const pattern = /(?:^|[^A-Z0-9_-])(NOV\d{4,}|SHAM-N\d{3,})(?![A-Z0-9_-])/g;
+      for (const match of decoded.matchAll(pattern)) candidates.add(match[1]);
+      return candidates.size === 1 ? candidates.values().next().value : '';
+    }
+
+    function renderPerson(person, forDelivery = false) {
+      const card = element('article', null, 'person');
+      const header = element('div', null, 'person-header');
+      const heading = element('h2', person.name || '—');
+      heading.dir = 'auto';
+      const status = element('span', t(person.status), 'pill');
+      status.dataset.status = person.status;
+      header.append(heading, status);
+      const details = element('dl', null, 'details');
+      for (const field of ['id', 'partner', 'phone', 'members', 'address']) {
+        const group = element('div');
+        const value = element('dd');
+        const text = element('bdi', person[field] || '—');
+        if (['id', 'phone', 'members'].includes(field)) text.dir = 'ltr';
+        value.append(text);
+        group.append(element('dt', t(field)), value);
+        details.append(group);
+      }
+      card.append(header, details);
+      if (forDelivery && person.status === 'pending') {
+        const button = element('button', t('confirm'), 'button delivery-button');
+        button.type = 'button';
+        button.disabled = deliveryBusy;
+        button.addEventListener('click', confirmDelivery);
+        card.append(button);
+      }
+      return card;
+    }
+
+    function renderDelivery() {
+      $('delivery-result').replaceChildren(...(currentPerson ? [renderPerson(currentPerson, true)] : []));
+      $('lookup-button').disabled = deliveryBusy;
+      $('manual-id').disabled = deliveryBusy;
+      $('scan-button').disabled = deliveryBusy || camera !== null;
+    }
+
+    async function lookupPerson(id) {
+      if (deliveryBusy) return;
+      currentPerson = null;
+      if (!idPattern.test(id)) {
+        renderDelivery();
+        notice('delivery', 'invalid_id', 'error');
+        return;
+      }
+      const startedIn = session;
+      deliveryBusy = true;
+      renderDelivery();
+      stopCamera();
+      notice('delivery', 'loading');
+      try {
+        const result = await api('person', {id});
+        if (startedIn !== session) return;
+        currentPerson = result.person;
+        notice('delivery');
+      } catch (error) {
+        if (startedIn === session) handleError('delivery', error);
+      } finally {
+        if (startedIn === session) {
+          deliveryBusy = false;
+          renderDelivery();
+        }
+      }
+    }
+
+    async function confirmDelivery() {
+      if (deliveryBusy || currentPerson?.status !== 'pending') return;
+      const id = currentPerson.id;
+      const startedIn = session;
+      deliveryBusy = true;
+      renderDelivery();
+      notice('delivery', 'loading');
+      try {
+        const result = await api('deliver', {id});
+        if (startedIn !== session) return;
+        currentPerson = result.person;
+        if (searchState) {
+          searchState.results = searchState.results.map(person => person.id === id ? result.person : person);
+          renderSearch();
+        }
+        notice('delivery', result.alreadyDelivered ? 'already' : 'saved');
+        if (activeView === 'stats') loadStats();
+      } catch (error) {
+        if (startedIn === session) handleError('delivery', error);
+      } finally {
+        if (startedIn === session) {
+          deliveryBusy = false;
+          renderDelivery();
+        }
+      }
+    }
+
+    async function startCamera() {
+      if (camera || deliveryBusy || activeView !== 'delivery') return;
+      if (!window.isSecureContext) return notice('delivery', 'cameraContext', 'error');
+      if (typeof Html5Qrcode !== 'function') return notice('delivery', 'cameraLibrary', 'error');
+      currentPerson = null;
+      const run = {reader: new Html5Qrcode('reader'), cancelled: false, captured: false, started: false};
+      camera = run;
+      renderDelivery();
+      $('camera-box').hidden = false;
+      notice('delivery', 'startingCamera');
+      try {
+        run.start = run.reader.start({facingMode: 'environment'}, {fps: 10}, value => {
+          if (run.cancelled || run.captured || activeView !== 'delivery') return;
+          run.captured = true;
+          const id = idFromQr(value);
+          stopCamera();
+          if (!id) {
+            notice('delivery', 'invalid_qr', 'error');
+            return;
+          }
+          $('manual-id').value = id;
+          lookupPerson(id);
+        });
+        await run.start;
+        run.started = true;
+        if (!run.cancelled) notice('delivery', 'scanHint');
+      } catch (error) {
+        if (!run.cancelled) {
+          stopCamera();
+          notice('delivery', 'cameraError', 'error');
+        }
+      }
+    }
+
+    async function stopCamera() {
+      const run = camera;
+      if (!run || run.cancelled) return;
+      run.cancelled = true;
+      $('camera-box').hidden = true;
+      try {
+        if (run.start) await run.start;
+        if (run.started) await run.reader.stop();
+      } catch (error) {
+        const video = $('reader').querySelector('video');
+        video?.srcObject?.getTracks().forEach(track => track.stop());
+      } finally {
+        try { run.reader.clear(); } catch (error) { $('reader').replaceChildren(); }
+        camera = null;
+        $('scan-button').disabled = deliveryBusy;
+      }
+    }
+
+    function renderSearch() {
+      $('search-button').disabled = searchBusy;
+      $('search-results').replaceChildren(...(searchState ? searchState.results.map(person => renderPerson(person)) : []));
+      $('pagination').hidden = !searchState || searchState.pages <= 1;
+      if (!searchState) return;
+      $('page-number').textContent = searchState.page + ' / ' + searchState.pages;
+      $('prev-page').disabled = searchBusy || searchState.page <= 1;
+      $('next-page').disabled = searchBusy || searchState.page >= searchState.pages;
+    }
+
+    async function loadSearch(page) {
+      if (searchBusy) return;
+      const startedIn = session;
+      searchBusy = true;
+      renderSearch();
+      notice('search', 'loading');
+      try {
+        const result = await api('search', {query, page});
+        if (startedIn !== session) return;
+        searchState = result;
+        notice('search', result.total ? 'count' : 'noResults', '', result.total || '');
+      } catch (error) {
+        if (startedIn === session) handleError('search', error);
+      } finally {
+        if (startedIn === session) {
+          searchBusy = false;
+          renderSearch();
+        }
+      }
+    }
+
+    function renderStats() {
+      $('refresh').disabled = statsBusy;
+      $('stats-content').hidden = !currentStats;
+      if (!currentStats) return;
+      const fields = ['total', 'delivered', 'pending'];
+      if (currentStats.unknown) fields.push('unknown');
+      $('stats-grid').replaceChildren(...fields.map(field => {
+        const item = element('div', null, 'metric');
+        item.append(element('span', t(field)), element('strong', currentStats[field]));
+        return item;
+      }));
+      $('delivery-progress').value = currentStats.percent;
+      $('stats-percent').textContent = currentStats.percent + '%';
+    }
+
+    async function loadStats() {
+      if (statsBusy) return;
+      const startedIn = session;
+      statsBusy = true;
+      renderStats();
+      notice('stats', 'loading');
+      try {
+        const result = await api('stats');
+        if (startedIn !== session) return;
+        currentStats = result.stats;
+        notice('stats');
+      } catch (error) {
+        if (startedIn === session) handleError('stats', error);
+      } finally {
+        if (startedIn === session) {
+          statsBusy = false;
+          renderStats();
+        }
+      }
+    }
+
+    function navigate(view) {
+      activeView = view;
+      if (view !== 'delivery') {
+        if (camera && !camera.cancelled) notice('delivery');
+        stopCamera();
+      }
+      views.forEach(id => { $(id).hidden = id !== view; });
+      document.querySelectorAll('[data-view]').forEach(button => {
+        if (button.dataset.view === view) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      if (view === 'stats') loadStats();
+    }
+
+    $('access').addEventListener('cancel', event => event.preventDefault());
+    $('key-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      if ($('unlock').disabled) return;
+      const supplied = $('access-key').value.trim();
+      $('unlock').disabled = true;
+      notice('access', 'loading');
+      try {
+        await api('access', {}, supplied);
+        key = supplied;
+        $('access-key').value = '';
+        $('access').close();
+        notice('access');
+        navigate('delivery');
+        $('manual-id').focus();
+      } catch (error) {
+        notice('access', error.message, 'error');
+      } finally {
+        $('unlock').disabled = false;
+      }
+    });
+    $('language').addEventListener('click', () => {
+      language = language === 'ar' ? 'en' : 'ar';
+      applyLanguage();
+    });
+    $('lock').addEventListener('click', () => lockApp());
+    document.querySelectorAll('[data-view]').forEach(button => {
+      button.addEventListener('click', () => navigate(button.dataset.view));
+    });
+    $('lookup-form').addEventListener('submit', event => {
+      event.preventDefault();
+      stopCamera();
+      const id = normalizeId($('manual-id').value);
+      $('manual-id').value = id;
+      lookupPerson(id);
+    });
+    $('manual-id').addEventListener('input', () => {
+      if (currentPerson) {
+        currentPerson = null;
+        renderDelivery();
+        notice('delivery');
+      }
+    });
+    $('scan-button').addEventListener('click', startCamera);
+    $('stop-scan').addEventListener('click', () => {
+      stopCamera();
+      notice('delivery');
+      $('manual-id').focus();
+    });
+    $('search-form').addEventListener('submit', event => {
+      event.preventDefault();
+      if (searchBusy) return;
+      query = $('search-query').value.trim();
+      searchState = null;
+      loadSearch(1);
+    });
+    $('prev-page').addEventListener('click', () => loadSearch(searchState.page - 1));
+    $('next-page').addEventListener('click', () => loadSearch(searchState.page + 1));
+    $('refresh').addEventListener('click', loadStats);
+    window.addEventListener('pagehide', stopCamera);
+    applyLanguage();
+    startWelcome();
+  </script>
+</body>
+</html>
